@@ -27,7 +27,7 @@ class ApplicationMonitor(object):
         self.platform = sys.platform
         self.hostname = hostname
         self.port = int(port)
-        if self.platform not in ['linux', 'win32']:
+        if self.platform not in ['linux', 'win32', 'darwin']:
             raise Exception('You\'re probably using an OS that is unsupported.  Sorry about that.  I take pull requests.')
         self.client = xmlrpc.client.ServerProxy('http://{}:{}/'.format(self.hostname, self.port))
         self.process = None
