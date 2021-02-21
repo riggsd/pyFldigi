@@ -258,7 +258,7 @@ class XmlMonitor(object):
             for key, value in old.items():
                 try:
                     if new[key] != value:
-                        self.logger.info('%s changed from %r to %r', key.upper(), value, new[key])
+                        self.logger.info('%s changed from %a to %a', key.upper(), value, new[key])
                 except KeyError:
                     pass  # TBD
             self.settings = new

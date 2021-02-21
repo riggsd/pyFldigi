@@ -106,7 +106,7 @@ class _History(object):
             raise TypeError('expected state type to be _State but got {}'.format(type(new_state)))
         last_state = self.state_history[-1].state
         if new_state.state != last_state:
-            self.logger.info('STATE CHANGE to %r', new_state.state)
+            self.logger.info('STATE CHANGE to %a', new_state.state)
             self.state_history[-1].end()
             self.state_history.append(new_state)
             self.chop()
@@ -175,7 +175,7 @@ class TxMonitor(threading.Thread):
                 data = self.clientObj.text.get_tx_data(suppress_errors=True)
                 if data is not None:
                     if len(data) > 0:
-                        self.logger.debug('TXMONITOR: TX DATA: %r', data)
+                        self.logger.debug('TXMONITOR: TX DATA: %a', data)
                         self.history.append_txdata(_TxData(data))
 
                 if state == 'TX':

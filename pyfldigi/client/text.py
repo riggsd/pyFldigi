@@ -18,7 +18,7 @@ class Text(object):
         :param value: The data to be sent to FLDIGI's TX text widget
         :type value: bytes or str
         """
-        self.logger.debug('add_tx(%r)', value)
+        self.logger.debug('add_tx(%a)', value)
         if isinstance(value, bytes):
             self.client.text.add_tx_bytes(value)
         elif isinstance(value, str):
@@ -50,7 +50,7 @@ class Text(object):
             else:
                 raise e
         else:
-            self.logger.debug('get_tx_data() returned: %r', data)
+            self.logger.debug('get_tx_data() returned: %a', data)
             return data
 
     def get_rx_data(self):
@@ -60,7 +60,7 @@ class Text(object):
         :rtype: str
         """
         data = self.client.rx.get_data()
-        self.logger.debug('get_rx_data() returned: %r', data)
+        self.logger.debug('get_rx_data() returned: %a', data)
         return data
 
     def clear_rx(self):
