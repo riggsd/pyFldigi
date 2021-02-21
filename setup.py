@@ -19,7 +19,7 @@ except:
     long_description = ''
 
 setup(name='pyfldigi',
-      version='0.4',
+      version='0.5',
       description='Python library to control FLDIGI via XML-RPC',
       long_description=long_description,
       url='https://github.com/KM4YRI/pyFldigi',
@@ -44,6 +44,9 @@ setup(name='pyfldigi',
                    'Programming Language :: Python :: 3.4',
                    'Programming Language :: Python :: 3.5',
                    'Programming Language :: Python :: 3.6',
+                   'Programming Language :: Python :: 3.7',
+                   'Programming Language :: Python :: 3.8',
+                   'Programming Language :: Python :: 3.9',
                    'Topic :: Communications :: Ham Radio'],
       keywords='fldigi ham radio hf digital cw morse rtty olivia psk ssb sdr',
       packages=find_packages(),
