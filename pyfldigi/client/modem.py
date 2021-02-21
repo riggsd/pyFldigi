@@ -1,15 +1,15 @@
-'''
-'''
+"""
+"""
 
 
 class Modem(object):
 
-    '''A collection of methods and properties that interface to fldigi's modem functionality.
+    """A collection of methods and properties that interface to fldigi's modem functionality.
     For full documentation on the various modems available, see:
     http://www.w1hkj.com/FldigiHelp-3.21/html/modems_page.html
 
     .. note:: An instance of this class automatically gets created under :py:class:`pyfldigi.client.client.Client` when it is constructed.
-    '''
+    """
 
     def __init__(self, clientObj):
         self.clientObj = clientObj
@@ -20,7 +20,7 @@ class Modem(object):
 
     @property
     def name(self):
-        '''The modem name.  This determines which modulation/demodulation protocol is used when
+        """The modem name.  This determines which modulation/demodulation protocol is used when
         transmitting and/or receiving.
 
         .. note:: A full list of names can be queried with: :py:attr:`Client.Modem.names`
@@ -38,18 +38,18 @@ class Modem(object):
         >>> fldigi.modem.name = 'BPSK31'  # set to BPSK31
         >>> fldigi.modem.name  # read back to demonstrate that it changed
         'BPSK31'
-        '''
+        """
         return self.client.modem.get_name()
 
     @name.setter
     def name(self, value):
-        '''Sets the current modem.
-        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property'''
+        """Sets the current modem.
+        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property"""
         self.client.modem.set_by_name(str(value))
 
     @property
     def names(self):
-        '''Returns all modem names
+        """Returns all modem names
 
         :rtype: str
 
@@ -74,12 +74,12 @@ class Modem(object):
         'PSK250RC2', 'PSK250RC3', 'PSK250RC5', 'PSK250RC6', 'PSK250RC7', 'PSK500RC2', 'PSK500RC3', 'PSK500RC4',
         'PSK800RC2', 'PSK1000RC2', 'FSQ', 'IFKP', 'SSB', 'WWV', 'ANALYSIS', 'FREQSCAN']
 
-        '''
+        """
         return self.client.modem.get_names()
 
     @property
     def id(self):
-        '''The numeric id of the modem.  This is effectively the enumeration value used internally by fldigi.
+        """The numeric id of the modem.  This is effectively the enumeration value used internally by fldigi.
 
         :getter: Returns the ID of the current modem
         :setter: Sets the current modem by the numeric id.
@@ -101,18 +101,18 @@ class Modem(object):
         1
         >>> fldigi.modem.name
         'CW'
-        '''
+        """
         return self.client.modem.get_id()
 
     @id.setter
     def id(self, value):
-        '''Sets the current modem.
-        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property'''
+        """Sets the current modem.
+        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property"""
         self.client.modem.set_by_id(int(value))
 
     @property
     def max_id(self):
-        '''Returns the maximum modem ID number
+        """Returns the maximum modem ID number
 
         :type: int
 
@@ -122,12 +122,12 @@ class Modem(object):
         >>> fldigi = pyfldigi.Client()
         >>> fldigi.modem.max_id
         124
-        '''
+        """
         return self.client.modem.get_max_id()
 
     @property
     def carrier(self):
-        '''The modem carrier frequency, in Hz.
+        """The modem carrier frequency, in Hz.
 
         .. note::
             This is NOT the same as the rig carrier frequency which is usually in the kHz or MHz range.
@@ -146,36 +146,36 @@ class Modem(object):
         >>> fldigi.modem.carrier = 1020
         >>> fldigi.modem.carrier
         1020
-        '''
+        """
         return self.client.modem.get_carrier()
 
     @carrier.setter
     def carrier(self, freq):
-        '''Sets modem carrier.
+        """Sets modem carrier.
 
         NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property
-        '''
+        """
         self.client.modem.set_carrier(int(freq))
 
     @property
     def afc_search_range(self):
-        '''The modem AFC [auto frequency control] search range
+        """The modem AFC [auto frequency control] search range
 
         :getter: Returns the modem AFC [auto frequency control] search range
         :setter: Sets the modem AFC [auto frequency control] search range.
         :type: int
-        '''
+        """
         return self.client.modem.get_afc_search_range()
 
     @afc_search_range.setter
     def afc_search_range(self, range):
-        '''Sets the modem AFC [auto frequency control] search range.
-        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property'''
+        """Sets the modem AFC [auto frequency control] search range.
+        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property"""
         self.client.modem.set_afc_search_range(int(range))
 
     @property
     def bandwidth(self):
-        '''The modem bandwidth.
+        """The modem bandwidth.
 
         :getter: Returns the modem bandwidth
         :setter: Sets the modem bandwidth.
@@ -189,18 +189,18 @@ class Modem(object):
         0
         >>> fldigi.modem.bandwidth = 500
         0
-        '''
+        """
         return self.client.modem.get_bandwidth()
 
     @bandwidth.setter
     def bandwidth(self, bandwidth):
-        '''Sets the modem bandwidth.
-        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property'''
+        """Sets the modem bandwidth.
+        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property"""
         self.client.modem.set_bandwidth(int(bandwidth))
 
     @property
     def quality(self):
-        '''Returns the modem signal quality in the range [0:100]
+        """Returns the modem signal quality in the range [0:100]
 
         :getter: Returns the modem bandwidth
         :type: int
@@ -211,39 +211,39 @@ class Modem(object):
         >>> fldigi = pyfldigi.Client()
         >>> fldigi.modem.quality
         0
-        '''
+        """
         return self.client.modem.get_quality()
 
     def search_up(self):
-        '''Searches upward in frequency
+        """Searches upward in frequency
 
         :Example:
 
         >>> import pyfldigi
         >>> fldigi = pyfldigi.Client()
         >>> fldigi.modem.search_up()
-        '''
+        """
         self.client.modem.search_up()
 
     def search_down(self):
-        '''Searches downward in frequency
+        """Searches downward in frequency
 
         :Example:
 
         >>> import pyfldigi
         >>> fldigi = pyfldigi.Client()
         >>> fldigi.modem.search_up()
-        '''
+        """
         self.client.modem.search_down()
 
 
 class Olivia(object):
 
-    '''Settings specific to the Olivia modem type.
+    """Settings specific to the Olivia modem type.
 
     .. note:: An instance of this class automatically gets created under :py:class:`pyfldigi.client.modem.Modem` when it is constructed.
 
-    '''
+    """
 
     def __init__(self, clientObj):
         self.clientObj = clientObj
@@ -251,7 +251,7 @@ class Olivia(object):
 
     @property
     def bandwidth(self):
-        '''Returns the Olivia bandwidth
+        """Returns the Olivia bandwidth
 
         :getter: Returns the modem bandwidth
         :setter: Sets the modem bandwidth.
@@ -264,18 +264,18 @@ class Olivia(object):
         >>> fldigi.modem.name = 'Olivia-4-250'
         >>> fldigi.modem.olivia.bandwidth
         500
-        '''
+        """
         return self.client.modem.olivia.get_bandwidth()
 
     @bandwidth.setter
     def bandwidth(self, bandwidth):
-        '''Sets the Olivia bandwidth
-        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property'''
+        """Sets the Olivia bandwidth
+        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property"""
         self.client.modem.olivia.set_bandwidth(int(bandwidth))
 
     @property
     def tones(self):
-        '''The # of Olivia tones.  Note that Olivia is a configurable mode where
+        """The # of Olivia tones.  Note that Olivia is a configurable mode where
 
         :getter: Returns the modem bandwidth
         :setter: Sets the modem bandwidth.
@@ -300,13 +300,13 @@ class Olivia(object):
         >>> fldigi.modem.olivia.tones = 8
         >>> fldigi.modem.name
         'Olivia-4-250'
-        '''
+        """
         return self.client.modem.olivia.get_tones()
 
     @tones.setter
     def tones(self, tones):
-        '''Sets the Olivia tones
-        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property'''
+        """Sets the Olivia tones
+        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property"""
         self.client.modem.olivia.set_tones(int(tones))
 
 
@@ -317,53 +317,53 @@ class Wefax(object):
         self.client = clientObj.client
 
     def get_engine_state(self):
-        '''Returns Wefax engine state (tx and rx) for information.
-        '''
+        """Returns Wefax engine state (tx and rx) for information.
+        """
         return self.client.wefax.state_string()
 
     def skip_apt(self):
-        '''Skip APT during Wefax reception
-        '''
+        """Skip APT during Wefax reception
+        """
         return self.client.wefax.skip_apt()
 
     def skip_phasing(self):
-        '''Skip phasing during Wefax reception
-        '''
+        """Skip phasing during Wefax reception
+        """
         return self.client.wefax.skip_phasing()
 
     def set_tx_abort_flag(self):
-        '''Cancels Wefax image transmission
-        '''
+        """Cancels Wefax image transmission
+        """
         return self.client.wefax.set_tx_abort_flag()
 
     def end_reception(self):
-        '''End Wefax image reception
-        '''
+        """End Wefax image reception
+        """
         return self.client.wefax.end_reception()
 
     def start_manual_reception(self):
-        '''Starts fax image reception in manual mode
-        '''
+        """Starts fax image reception in manual mode
+        """
         return self.client.wefax.start_manual_reception()
 
     def set_adif_log(self, logging):
-        '''Set/reset logging to received/transmit images to ADIF log file
-        '''
+        """Set/reset logging to received/transmit images to ADIF log file
+        """
         return self.client.wefax.set_adif_log(bool(logging))
 
     def set_max_lines(self, lines):
-        '''Set maximum lines for fax image reception
-        '''
+        """Set maximum lines for fax image reception
+        """
         return self.client.wefax.set_max_lines(int(lines))
 
     def get_received_file(self, timeout):
-        '''Waits for next received fax file, returns its name with a delay. Empty string if timeout.
-        '''
+        """Waits for next received fax file, returns its name with a delay. Empty string if timeout.
+        """
         return self.client.wefax.get_received_file(int(timeout))
 
     def send_file(self, filename, param):
-        '''Send file. returns an empty string if OK otherwise an error message.
-        '''
+        """Send file. returns an empty string if OK otherwise an error message.
+        """
         with open(filename, mode='rb') as f:
             img = f.read()
             img = img.decode('iso-8859-1')  # must be sent out as a string
@@ -377,13 +377,13 @@ class Navtex(object):
         self.client = clientObj.client
 
     def get_msg(self, timeout):
-        '''Returns next Navtex/SitorB message with a max delay in seconds.. Empty string if timeout.
-        '''
+        """Returns next Navtex/SitorB message with a max delay in seconds.. Empty string if timeout.
+        """
         return self.client.navtex.get_message(int(timeout))
 
     def send_msg(self, msg):
-        '''Send a Navtex/SitorB message. Returns an empty string if OK otherwise an error message.
-        '''
+        """Send a Navtex/SitorB message. Returns an empty string if OK otherwise an error message.
+        """
         resp = self.client.navtex.send_message(str(msg))
         if resp != '':
             raise Exception('Unable to send NAVTEX message.  Error message returned: {}'.format(resp))

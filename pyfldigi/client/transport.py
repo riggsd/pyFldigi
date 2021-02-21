@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-'''A replacement transport for Python xmlrpc library.
+"""A replacement transport for Python xmlrpc library.
 
 pyfldigi note:  Shamelessly borrowed from:
 
@@ -8,7 +8,7 @@ https://github.com/astraw/stdeb/blob/master/stdeb/transport.py
 
 ..with a few modifications, mainly to make it python 3 friendly, and to get rid of vestigial cruft.
 Oh, and I made it HTTP only because fldigi doesn't support HTTPS as far as I know.
-The file was originally released under the MIT license'''
+The file was originally released under the MIT license"""
 
 import xmlrpc
 import requests
@@ -33,7 +33,7 @@ class RequestsTransport(xmlrpc.client.Transport):
     user_agent = 'Python-xmlrpc with Requests (python-requests.org)'
 
     def request(self, host, handler, request_body, verbose):
-        '''Make an xmlrpc request.'''
+        """Make an xmlrpc request."""
         headers = {'User-Agent': self.user_agent, 'Content-Type': 'text/xml'}
         url = self._build_url(host, handler)
         resp = requests.post(url, data=request_body, headers=headers)
@@ -45,12 +45,12 @@ class RequestsTransport(xmlrpc.client.Transport):
             return self.parse_response(resp)
 
     def parse_response(self, resp):
-        '''Parse the xmlrpc response.'''
+        """Parse the xmlrpc response."""
         p, u = self.getparser()  # returns (parser, target)
         p.feed(resp.text)
         p.close()
         return u.close()
 
     def _build_url(self, host, handler):
-        '''Build a url for our request based on the host, handler and use_http property'''
+        """Build a url for our request based on the host, handler and use_http property"""
         return 'http://{}/{}'.format(host, handler)

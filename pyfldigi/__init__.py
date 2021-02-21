@@ -1,5 +1,5 @@
-'''pyfldigi package init
-'''
+"""pyfldigi package init
+"""
 
 from .client import Client
 from .appmonitor import ApplicationMonitor

@@ -112,7 +112,7 @@ class _History(object):
             self.chop()
 
     def get_duty_cycle(self, sample_period=60):
-        '''Returns the duty cycle over a given sample period'''
+        """Returns the duty cycle over a given sample period"""
         on_time = sum([i.duration for i in self.state_history if (i.state == 'TX')])
         off_time = sum([i.duration for i in self.state_history if (i.state != 'TX')])
         # print('on_time: {}s'.format(on_time))
@@ -120,7 +120,7 @@ class _History(object):
         return (on_time / (on_time + off_time)) * 100
 
     def get_state(self):
-        '''Returns the last state'''
+        """Returns the last state"""
         return self.state_history[-1].state
 
     def append_txdata(self, txdata):

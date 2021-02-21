@@ -1,5 +1,5 @@
-'''
-'''
+"""
+"""
 
 import time
 import logging
@@ -7,10 +7,10 @@ import logging
 
 class Main(object):
 
-    '''All the commands under 'fldigi.main' in the XML-RPC spec for fldigi.
+    """All the commands under 'fldigi.main' in the XML-RPC spec for fldigi.
 
     .. note:: An instance of this class automatically gets created under :py:class:`pyfldigi.client.client.Client` when it is constructed.
-    '''
+    """
 
     def __init__(self, clientObj):
         self.clientObj = clientObj
@@ -19,7 +19,7 @@ class Main(object):
 
     @property
     def status1(self):
-        '''Returns the contents of the first status field (typically s/n)
+        """Returns the contents of the first status field (typically s/n)
 
         :returns: First status field
         :rtype: str
@@ -30,12 +30,12 @@ class Main(object):
         >>> fldigi = pyfldigi.Client()
         >>> fldigi.main.status1
         ''
-        '''
+        """
         return self.client.main.get_status1()
 
     @property
     def status2(self):
-        '''Returns the contents of the second status field
+        """Returns the contents of the second status field
 
         :returns: Second status field
         :rtype: str
@@ -46,12 +46,12 @@ class Main(object):
         >>> fldigi = pyfldigi.Client()
         >>> fldigi.main.status2
         ''
-        '''
+        """
         return self.client.main.get_status2()
 
     @property
     def wf_sideband(self):
-        '''The current waterfall sideband (either USB or LSB)
+        """The current waterfall sideband (either USB or LSB)
 
         :getter: Returns the current waterfall sideband (either USB or LSB)
         :setter: Sets the waterfall sideband to USB or LSB.
@@ -67,20 +67,20 @@ class Main(object):
         >>> fldigi.main.wf_sideband = 'LSB'  # set to Lower sideband
         >>> fldigi.main.wf_sideband  # read back to demonstrate that it changed
         'LSB'
-        '''
+        """
         return self.client.main.get_wf_sideband()
 
     @wf_sideband.setter
     def set_wf_sideband(self, sideband):
-        '''Sets the waterfall sideband to USB or LSB
-        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property'''
+        """Sets the waterfall sideband to USB or LSB
+        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property"""
         if str(sideband) not in ['USB', 'LSB']:
             raise ValueError('sideband must be USB or LSB')
         self.client.main.set_wf_sideband(str(sideband))
 
     @property
     def afc(self):
-        '''The AFC (auto frequency control) state
+        """The AFC (auto frequency control) state
 
         :getter: Returns the AFC [auto frequency control] state
         :setter: Sets the AFC [auto frequency control] state.
@@ -95,20 +95,20 @@ class Main(object):
         >>> fldigi.main.afc = False  # disable
         >>> fldigi.main.afc  # read back to demonstrate that it changed
         False
-        '''
+        """
         return bool(self.client.main.get_afc())
 
     @afc.setter
     def afc(self, afc):
-        '''Sets the AFC (auto frequency control) state.
-        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property'''
+        """Sets the AFC (auto frequency control) state.
+        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property"""
         if not isinstance(afc, bool):
             raise TypeError('afc must be a bool')
         self.client.main.set_afc(afc)
 
     @property
     def squelch(self):
-        '''The squelch state (True or False)
+        """The squelch state (True or False)
 
         :getter: Returns the squelch state.
         :setter: Sets the squelch state.
@@ -123,20 +123,20 @@ class Main(object):
         >>> fldigi.main.squelch = False  # disable
         >>> fldigi.main.squelch  # read back to demonstrate that it changed
         False
-        '''
+        """
         return bool(self.client.main.get_squelch())
 
     @squelch.setter
     def squelch(self, squelch):
-        '''Sets the squelch state.
-        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property'''
+        """Sets the squelch state.
+        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property"""
         if not isinstance(squelch, bool):
             raise TypeError('squelch state must be a bool')
         self.client.main.set_squelch(squelch)
 
     @property
     def squelch_level(self):
-        '''The squelch level.  Range is 0.0 - 100.0
+        """The squelch level.  Range is 0.0 - 100.0
 
         :getter: Returns the squelch level
         :setter: Sets the squelch state.
@@ -151,20 +151,20 @@ class Main(object):
         >>> fldigi.main.squelch_level = 4  # set to 4.  will be casted to float.
         >>> fldigi.main.squelch_level  # read back to demonstrate that it changed
         4.0
-        '''
+        """
         return self.client.main.get_squelch_level()
 
     @squelch_level.setter
     def squelch_level(self, level):
-        '''Sets the squelch level.
-        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property'''
+        """Sets the squelch level.
+        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property"""
         if not 0 <= level <= 100:
             raise ValueError('squelch level must be between 0 and 100')
         self.client.main.set_squelch_level(float(level))
 
     @property
     def reverse(self):
-        '''The Reverse Sideband state (whether or not the mark and space are reversed)
+        """The Reverse Sideband state (whether or not the mark and space are reversed)
 
         :getter: Returns the Reverse Sideband state
         :setter: Sets the Reverse Sideband state.
@@ -179,18 +179,18 @@ class Main(object):
         >>> fldigi.main.reverse = False  # disable
         >>> fldigi.main.reverse  # read back to demonstrate that it changed
         False
-        '''
+        """
         return bool(self.client.main.get_reverse())
 
     @reverse.setter
     def reverse(self, state):
-        '''Sets the Reverse Sideband state.
-        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property'''
+        """Sets the Reverse Sideband state.
+        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property"""
         self.client.main.set_reverse(bool(state))
 
     @property
     def txlock(self):
-        '''The Transmit [frequency] Lock state.  When unlocked the transmit and receive frequencies can be uncoupled.
+        """The Transmit [frequency] Lock state.  When unlocked the transmit and receive frequencies can be uncoupled.
 
         :getter: Returns the Transmit [frequency] Lock state
         :setter: Sets the Transmit [frequency] Lock state.
@@ -205,18 +205,18 @@ class Main(object):
         >>> fldigi.main.txlock = False  # disable
         >>> fldigi.main.txlock  # read back to demonstrate that it changed
         False
-        '''
+        """
         return bool(self.client.main.get_lock())
 
     @txlock.setter
     def txlock(self, value=True):
-        '''Sets the Transmit [frequency] Lock state.
-        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property'''
+        """Sets the Transmit [frequency] Lock state.
+        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property"""
         self.client.main.set_lock(bool(value))
 
     @property
     def rsid(self):
-        '''The RSID state.
+        """The RSID state.
 
         Reed-Solomon Identification (RSID) is used in several digital mode programs. RSID allows the automatic
         identification of any digital transmission which has been assigned a unique code identifier.
@@ -253,17 +253,17 @@ class Main(object):
         >>> fldigi.main.rsid = False  # disable
         >>> fldigi.main.rsid  # read back to demonstrate that it changed
         False
-        '''
+        """
         return bool(self.client.main.get_rsid())
 
     @rsid.setter
     def rsid(self, value):
-        '''Sets the RSID state.
-        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property'''
+        """Sets the RSID state.
+        NOTE: sphinx ignores docstrings from setters, the documentation is above under the @property"""
         self.client.main.set_rsid(bool(value))
 
     def get_trx_state(self, suppress_errors=False):
-        '''Returns transmit/tune/receive status
+        """Returns transmit/tune/receive status
 
         :param suppress_errors: if True, no exception will be raised if the xml-rpc request fails.
         :type suppress_errors: bool
@@ -281,7 +281,7 @@ class Main(object):
         >>> fldigi = pyfldigi.Client()
         >>> fldigi.get_trx_state()
         'RX'
-        '''
+        """
         for tries in range(3):  # retry up to 3 times.
             try:
                 state = str(self.client.main.get_trx_status()).upper()
@@ -299,7 +299,7 @@ class Main(object):
         return state
 
     def rx(self):
-        '''Puts fldigi into receive mode.
+        """Puts fldigi into receive mode.
 
         .. note::
             This is the default mode that FLDIGI starts in.
@@ -313,12 +313,12 @@ class Main(object):
         >>> fldigi.main.tx()  # Put flgidigi into transmit mode
         >>> fldigi.delay(1000)  # wait a bit
         >>> fldigi.main.rx()  # Put flgidigi into receive mode
-        '''
+        """
         self.logger.debug('Setting FLDIGI to RX mode')
         self.client.main.rx()
 
     def tx(self):
-        '''Puts fldigi into transmit mode.  This will key the PTT or VOX via CAT control.
+        """Puts fldigi into transmit mode.  This will key the PTT or VOX via CAT control.
 
         .. note:: If you're looking to transmit a block of text, please use :py:method:`pyfldigi.client.main.send`
 
@@ -329,24 +329,24 @@ class Main(object):
         >>> fldigi.main.tx()  # Put flgidigi into transmit mode
         >>> fldigi.delay(1000)  # wait a bit
         >>> fldigi.main.rx()  # Put flgidigi into receive mode
-        '''
+        """
         self.logger.debug('Setting FLDIGI to TX mode')
         self.client.main.tx()
 
     def tune(self):
-        '''Puts fldigi into tune mode.  I'm assuming that this allows antenna tuning via CAT/RIG control.
+        """Puts fldigi into tune mode.  I'm assuming that this allows antenna tuning via CAT/RIG control.
 
         :Example:
 
         >>> import pyfldigi
         >>> fldigi = pyfldigi.Client()
         >>> fldigi.main.tune()  # Put flgidigi into tune mode
-        '''
+        """
         self.logger.debug('Setting FLDIGI to TUNE mode')
         self.client.main.tune()
 
     def abort(self):
-        '''Aborts a transmit or tune
+        """Aborts a transmit or tune
 
         :Example:
 
@@ -355,27 +355,27 @@ class Main(object):
         >>> fldigi.main.tx()  # Put flgidigi into transmit mode
         >>> fldigi.delay(10)  # wait a bit
         >>> fldigi.main.abort()  # abort the transmit
-        '''
+        """
         self.client.main.abort()
 
     def run_macro(self, macroNum):
-        '''Runs a macro
+        """Runs a macro
 
         :param macroNum: The macro # to run.  Must be a valid #.
         :type macroNum: int
-        '''
+        """
         return self.client.main.run_macro(int(macroNum))
 
     def get_max_macro_id(self):
-        '''Returns the maximum macro ID number
+        """Returns the maximum macro ID number
 
         :returns: The maximum macro ID number
         :rtype: int
-        '''
+        """
         return self.client.main.get_max_macro_id()
 
     def send(self, data, block=True, timeout=10):
-        '''This is the preferred way of sending a block of text.
+        """This is the preferred way of sending a block of text.
 
         :param data: The text or data to encode and transmit
         :type data: str or bytes
@@ -397,7 +397,7 @@ class Main(object):
         >>> c = pyfldigi.Client()
         >>> # Make sure to set up the modem and rig settings here!!!
         >>> c.main.send('Lorem ipsum dolor sit amet', timeout=50)
-        '''
+        """
         state = self.clientObj.main.get_trx_state()
         self.logger.debug('send(): state=%r', state)
 
