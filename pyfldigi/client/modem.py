@@ -283,23 +283,23 @@ class Olivia(object):
 
         :Example:
 
-        >>> import pyfldigi
-        >>> fldigi = pyfldigi.Client()
+            >>> import pyfldigi
+            >>> fldigi = pyfldigi.Client()
 
-        # Changing the modem name has an effect on the # of tones.
-        >>> fldigi.modem.name = 'Olivia-4-250'
-        >>> fldigi.modem.tones
-        4
-        >>> fldigi.modem.name = 'Olivia-8-250'
-        >>> fldigi.modem.tones
-        8
-        # Setting the # of tones will have an effect on the name.
-        >>> fldigi.modem.olivia.tones = 4
-        >>> fldigi.modem.name
-        'Olivia-4-250'
-        >>> fldigi.modem.olivia.tones = 8
-        >>> fldigi.modem.name
-        'Olivia-4-250'
+            # Changing the modem name has an effect on the # of tones.
+            >>> fldigi.modem.name = 'Olivia-4-250'
+            >>> fldigi.modem.tones
+            4
+            >>> fldigi.modem.name = 'Olivia-8-250'
+            >>> fldigi.modem.tones
+            8
+            # Setting the # of tones will have an effect on the name.
+            >>> fldigi.modem.olivia.tones = 4
+            >>> fldigi.modem.name
+            'Olivia-4-250'
+            >>> fldigi.modem.olivia.tones = 8
+            >>> fldigi.modem.name
+            'Olivia-4-250'
         """
         return self.client.modem.olivia.get_tones()
 
