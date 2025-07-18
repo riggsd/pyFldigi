@@ -31,6 +31,7 @@ class ApplicationMonitor(object):
             raise Exception('You\'re probably using an OS that is unsupported.  Sorry about that.  I take pull requests.')
         self.client = xmlrpc.client.ServerProxy('http://{}:{}/'.format(self.hostname, self.port))
         self.process = None
+        self.returncode = None
 
     def start(self, headless=False, wfall_only=False):
         """Start fldigi in the background
@@ -158,9 +159,10 @@ class ApplicationMonitor(object):
         else:
             p = self.process.poll()  # will return None if not yet finished.  Will return the exit code if it has finished.
             if p is None:
-                return False
+                return True
             else:
                 self.returncode = p
+                return False
 
 
 if __name__ == '__main__':
