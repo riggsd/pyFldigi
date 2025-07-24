@@ -293,7 +293,7 @@ class Main(object):
                     state = 'ERROR'
             if state in ['TX', 'RX', 'TUNE']:
                 break
-            time.sleep(0.005)
+            time.sleep(0.05)
         else:
             state = 'ERROR'
         return state
@@ -417,6 +417,7 @@ class Main(object):
                     break
                 if time.time() - tx_start >= timeout:
                     raise TimeoutError('Timeout while transmitting, waiting for first byte to go out')
+                time.sleep(0.05)
         else:
             raise Exception('cannot transmit if FLDIGI state is {!r}'.format(state))
 
@@ -427,3 +428,4 @@ class Main(object):
                     break
                 if time.time() - tx_start >= timeout:
                     raise TimeoutError('Timeout while transmitting, waiting for text to be transmitted')
+                time.sleep(0.05)
